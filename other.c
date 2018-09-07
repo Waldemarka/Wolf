@@ -26,6 +26,7 @@ void 	ft_error(int num)
 		ft_putstr("BAD LOAD\n");
 	if (num == 5)
 		ft_putstr("FINISH\n");
+	system("leaks wolf");
 	exit (1);
 }
 
@@ -76,15 +77,24 @@ void	check_rest(t_data *data)
 
 void	load_texture(t_data *data)
 {
-	data->up = load_image("texture/upper.png");
-	data->floor = load_image("texture/flor.jpg");
-	data->wall[0] = load_image("texture/wall1.jpg");
-	data->wall[1] = load_image("texture/wall2.jpg");
-	data->wall[2] = load_image("texture/wall3.jpg");
-	data->wall[3] = load_image("texture/wall4.jpg");
+	data->up = load_image("texture/walls_etc/upper.png");
+	data->floor = load_image("texture/walls_etc/flor.jpg");
+	data->wall[0] = load_image("texture/walls_etc/wall1.jpg");
+	data->wall[1] = load_image("texture/walls_etc/wall2.jpg");
+	data->wall[2] = load_image("texture/walls_etc/wall3.jpg");
+	data->wall[3] = load_image("texture/walls_etc/wall4.jpg");
+	data->wall[4] = load_image("texture/door/door_1.png");
+	data->wall[5] = load_image("texture/door/door_2.png");
+	data->wall[6] = load_image("texture/door/door_3.png");
+	data->wall[7] = load_image("texture/door/door_4.png");
+	data->wall[8] = load_image("texture/door/door_5.png");
+	data->wall[9] = load_image("texture/door/door_6.png");
+	data->wall[10] = load_image("texture/door/door_7.png");
+	data->wall[11] = load_image("texture/door/door_8.png");
+	data->wall[12] = load_image("texture/door/door_9.png");
 	data->pist[0] = load_image("texture/guns/pist1.png");
 	data->pist[1] = load_image("texture/guns/pist2.png");
-	data->pist[2]= load_image("texture/guns/pist3.png");
+	data->pist[2] = load_image("texture/guns/pist3.png");
 	data->drob[0] = load_image("texture/guns/drob1.png");
 	data->drob[1] = load_image("texture/guns/drob2.png");
 	data->drob[2] = load_image("texture/guns/drob3.png");
@@ -93,132 +103,3 @@ void	load_texture(t_data *data)
 	data->drob[5] = load_image("texture/guns/drob6.png");
 	data->drob[6] = load_image("texture/guns/drob7.png");
 }
-
-
-
-
-
-
-/*
-
-# include "includes/wolf.h"
-
-void	put_buf(t_data *data, int x, int y, SDL_Surface *textu)
-{
-	if (get_pixel_int(textu, data->sprite_tex_x, data->sprite_tex_y) != 0)
-	{
-		data->buf[y][x] = get_pixel_int(textu, data->sprite_tex_x, data->sprite_tex_y);
-		data->buf[y + 1][x] = get_pixel_int(textu, data->sprite_tex_x, data->sprite_tex_y);
-		data->buf[y][x + 1] = get_pixel_int(textu, data->sprite_tex_x, data->sprite_tex_y);
-		data->buf[y + 1][x + 1] = get_pixel_int(textu, data->sprite_tex_x, data->sprite_tex_y);
-	}
-}
-
-void	draw_splits(t_data *data, SDL_Surface *textu)
-{
-	int x;
-	int y;
-
-	x = data->sprit.min_coord_x;
-	data->spr_x = 1;
-	while (x < data->sprit.max_coord_x)
-	{
-		y = data->sprit.min_coord_y;
-		data->spr_y = 1;
-		while (y < data->sprit.max_coord_y)
-		{
-			data->sprite_tex_x = data->sprit.pixel_wid + data->spr_x;
-			data->sprite_tex_y = data->sprit.pixel_wid + data->spr_y;
-			put_buf(data, x, y, textu);
-			data->spr_y++;
-			y += 2;
-		}
-		data->spr_x++;
-		x += 2;
-	}
-}
-
-void	check_sprite(t_data *data)
-{
-	if (data->nb_weapon == 1)
-	{
-		data->sprit.iterat = 1;
-		data->sprit.pixel_wid = 100;
-		data->now = data->pist[data->q];
-	}
-	else if (data->nb_weapon == 2)
-	{
-		data->sprit.pixel_wid = 180;
-		data->sprit.iterat = 6;
-		data->now = data->drob[data->q];
-	}
-	data->sprit.timing = 50;
-	data->sprit.min_coord_x = WIDTH - data->sprit.pixel_wid * 2;
-	data->sprit.min_coord_y = HEIGHT - data->sprit.pixel_wid * 2;
-	data->sprit.max_coord_x = WIDTH;
-	data->sprit.max_coord_y = HEIGHT;
-}
-
-void	sprite_fire(t_data *data)
-{
-	data->time = SDL_GetTicks();
-	data->check = data->q;
-	if (data->key_space == 1)
-	{
-		check_sprite(data);
-		if (data->time <= data->start_time + (data->sprit.timing * (data->q)))
-		{
-			draw_splits(data, data->now);
-		}
-		if (data->time >= data->start_time + (data->sprit.timing * (data->q)))
-			data->q++;
-		if (data->q > data->sprit.iterat)
-		{
-			data->q = 0;
-			data->key_space = 0;
-		}
-	}
-	if (data->key_space == 0)
-		data->q = 0;
-}
-
-void	hands(t_data *data)
-{
-	if (data->nb_weapon == 1)
-	{
-		data->sprit.pixel_wid = 100;
-		data->now = data->pist[0];
-	}
-	else if (data->nb_weapon == 2)
-	{
-		data->sprit.pixel_wid = 180;
-		data->now = data->drob[0];
-	}
-	if (data->key_space == 0)
-	{
-		data->sprit.min_coord_x = WIDTH - data->sprit.pixel_wid;
-		data->sprit.min_coord_y = HEIGHT - data->sprit.pixel_wid;
-		data->sprit.max_coord_x = WIDTH;
-		data->sprit.max_coord_y = HEIGHT;
-		draw_splits(data, data->now);
-	}
-}
-
-void	sprites(t_data *data)
-{
-	hands(data);
- 	sprite_fire(data);
-
-}
-
-
-
-
-*/
-
-
-
-
-
-
-

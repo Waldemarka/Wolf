@@ -54,7 +54,7 @@ typedef struct s_data
 	SDL_Surface *sec;
 	t_sprites	sprit;
 	SDL_Surface *now;
-	SDL_Surface *wall[4];
+	SDL_Surface *wall[13];
 	SDL_Surface *pist[3];
 	SDL_Surface *drob[7];
 
@@ -90,6 +90,7 @@ typedef struct s_data
 	int			draw_end;
 	int			step_x;
 	int			step_y;
+	double		speed;
 
 	double		wall_x;
 	int			tex_x;
@@ -109,10 +110,17 @@ typedef struct s_data
 	unsigned int start_time;
 	int 		sprite_tex_x;
 	int			sprite_tex_y;
-	int 		check;
 	int 		spr_x;
 	int 		spr_y;
 	int			nb_weapon;
+	int 		key_door;
+	int 		start_time_door;
+	int 		time_door;
+	int 		max_box;
+	int			q_door;
+	int			dr_map_x;
+	int			dr_map_y;
+	int 		check_door;
 
 	int 		w;
 	int 		h;
@@ -147,7 +155,9 @@ void			put_pixel32(SDL_Surface *surface, int x, int y, int pixel);
 SDL_Surface		*load_image(char *path);
 void			key_left(t_data *data);
 void			key_right(t_data *data);
-void			other_keys(t_data *data, SDL_Event event);
+void			other_keys(t_data *data, const Uint8 *keys, SDL_Event	event);
 void			sprites(t_data *data);
+int				check_door(t_data *data);
+void			door(t_data *data);
 
 #endif 

@@ -6,16 +6,16 @@
 #    By: vomelchu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/24 15:12:04 by vomelchu          #+#    #+#              #
-#    Updated: 2018/06/24 15:12:06 by vomelchu         ###   ########.fr        #
+#    Updated: 2018/09/06 13:34:56 by vomelchu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = wolf
+NAME = wolf3d
 
 SRC_WOLF = get_next_line.c raycast.c\
 		other.c read.c main.c\
 		raycast2.c sdl.c keys.c\
-		sprite.c keys2.c
+		sprite.c keys2.c door.c
 
 OBJECT_WOLF = $(SRC_WOLF:.c=.o)
 
@@ -47,7 +47,7 @@ all: $(NAME)
 $(NAME) : $(OBJECT_WOLF)
 	make -C ./source/libft
 	@echo "file: */Wolf"
-	@gcc -g -fsanitize=address -o $(NAME) $(FLAGS) $(LIBFT) $(INCLUDES_SDL2) $(INCLUDES_SDL2_IMAGE) -rpath @loader_path/source/sdl $(FRAMEWORK_SDL2) $(OBJECT_WOLF) $(INCLUDES_SDL2_TTF) $(INCLUDES_SDL2_MIXER)
+	@gcc -o $(NAME) $(FLAGS) $(LIBFT) $(INCLUDES_SDL2) $(INCLUDES_SDL2_IMAGE) -rpath @loader_path/source/sdl $(FRAMEWORK_SDL2) $(OBJECT_WOLF) $(INCLUDES_SDL2_TTF) $(INCLUDES_SDL2_MIXER)
 
 %.o: %.c includes/*.h
 	gcc -g $(FLAGS) -o $@ -c $< $(INCLUDES_WOLF) $(INCLUDES_SDL2) $(INCLUDES_LIBFT) \

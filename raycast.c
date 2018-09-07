@@ -53,7 +53,8 @@ void	dda_ray(t_data * data)
 			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		if (data->array[data->map_y][data->map_x] > 0)
+		if ((data->array[data->map_y][data->map_x] > 0
+			&& data->array[data->map_y][data->map_x] < data->max_box))
 			data->hit = 1;
 	}
 }
@@ -92,8 +93,6 @@ void	calculate_drawing(t_data *data)
 void	raycasting(t_data *data)
 {
 	data->x = -1;
-	sprites(data);
-	SDL_RenderClear(data->ren);
 	while (++data->x < data->w)
 	{
 		first_part_ray(data);
@@ -102,6 +101,6 @@ void	raycasting(t_data *data)
 		find_floorwall(data);
 		dr_floor(data);
 	}
-	printf("pos_x %d  :::: pos_y %d\n", (int)data->pos_x, (int)data->pos_y);
+	printf("%f\n", data->dir_y);
 	sprites(data);
 }

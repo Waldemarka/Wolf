@@ -49,7 +49,7 @@ void	check_sprit(t_data *data)
 	else if (data->nb_weapon == 2)
 	{
 		data->sprit.iterat = 7;
-		data->sprit.timing = 100;
+		data->sprit.timing = 120;
 		data->sprit.pixel_wid = 410;
 		data->sprit.min_coord_x = WIDTH - data->sprit.pixel_wid - 100;
 	}
@@ -88,18 +88,19 @@ void	draw_animations(t_data *data)
 {
 	data->time = SDL_GetTicks();
 
-	data->check = data->q;
 	if (data->key_space == 1)
 	{
 		if (data->time <= data->start_time + (data->sprit.timing * (data->q + 1)))
 			animat(data, guns(data));
 		if (data->time >= data->start_time + (data->sprit.timing * (data->q + 1)))
+		{
+			animat(data, guns(data));
 			data->q++;
+		}
 		if (data->q >= data->sprit.iterat)
 		{
 			data->q = 0;
 			data->key_space = 0;
-			data->check = 0;
 		}
 	}
 	if (data->key_space == 0)

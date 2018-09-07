@@ -54,13 +54,14 @@ void	dr_floor(t_data *data)
 		data->floor_tex_x = (int)(data->current_floor_x * 256) % 256;
 		data->floor_tex_y = (int)(data->current_floor_y * 256) % 256;
 		data->buf[data->y][data->x] = get_pixel_int(data->floor, data->floor_tex_x, data->floor_tex_y);
-		data->buf[WIDTH/4*3 - data->y][data->x] = get_pixel_int(data->up, data->floor_tex_x, data->floor_tex_y);
+		data->buf[WIDTH / 4 * 3 - data->y][data->x] = get_pixel_int(data->up, data->floor_tex_x, data->floor_tex_y);
 	}
 }
 
 void 	draw_wall(t_data *data)
 {
 	int n;
+	int color;
 
 	n = data->array[data->map_y][data->map_x] - 1;
 	if (data->side == 0)
@@ -78,6 +79,7 @@ void 	draw_wall(t_data *data)
 	{
 		data->d = data->y * 256 - data->h * 128 + data->line_height * 128;
 		data->tex_y = ((data->d * 256.0) / data->line_height / 256);
-		data->buf[data->y][data->x] = get_pixel_int(data->wall[n], data->tex_x, data->tex_y);
+		if ((color = get_pixel_int(data->wall[n], data->tex_x, data->tex_y)) != 0)
+			data->buf[data->y][data->x] = color;
 	}
 }

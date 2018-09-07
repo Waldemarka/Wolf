@@ -16,7 +16,7 @@ void	init_all(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		ft_error(3);
-	if (!(data->win = SDL_CreateWindow("HI", 400, 400, WIDTH, HEIGHT, SDL_WINDOW_SHOWN)))
+	if (!(data->win = SDL_CreateWindow("Wolf3D", 400, 400, WIDTH, HEIGHT, SDL_WINDOW_RESIZABLE)))
 		ft_error(3);
 	if (!(data->ren = SDL_CreateRenderer(data->win, -1, SDL_RENDERER_ACCELERATED
 		| SDL_RENDERER_PRESENTVSYNC)))
@@ -28,13 +28,9 @@ void	init_all(t_data *data)
 	data->dir_y = 0.0;
 	data->plan_x = 0.0;
 	data->plan_y = 0.66;
-	data->for_exit = 0;
-	data->camerX = 0;
-	data->map_x = 0;
-	data->map_y = 0;
-	data->hit = 0;
 	data->nb_weapon = 1;
-	data->check = 0;
+	data->max_box = 7;
+	data->speed = 0.04;
 	data->h = HEIGHT;
 	data->w = WIDTH;
 	load_texture(data);
@@ -64,10 +60,11 @@ void	game(t_data *data)
 {
 	while (data->for_exit == 0)
 	{
-		SDL_UpdateTexture(data->screen, NULL, data->buf[0], WIDTH << 2);
+		SDL_UpdateTexture(data->screen, NULL, data->buf, WIDTH << 2);
 		SDL_RenderCopy(data->ren, data->screen, NULL, NULL);
 		SDL_RenderPresent(data->ren);
 		raycasting(data);
+		door(data);
 		key_event(data);
 	}
 }

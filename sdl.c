@@ -30,14 +30,6 @@ unsigned int	get_pixel_int(SDL_Surface *surface, int x, int y)
 	return (pixels[(y * surface->w) + x]);
 }
 
-void			put_pixel32(SDL_Surface *surface, int x, int y, int pixel)
-{
-    Uint32 *pixels = (Uint32 *)surface->pixels;
-    
-    pixels[ ( y * WIDTH) + x ] = (Uint32)pixel;
-    printf("\n");
-}
-
 void	applySurface(int x, int y, SDL_Texture *tex, t_data *data)
 {
 	SDL_Rect pos;
