@@ -73,9 +73,7 @@ void	animat(t_data *data, SDL_Surface *tex_sprite)
 		while (y != data->sprit.max_coord_y)
 		{
 			if ((i = get_pixel_int(tex_sprite, data->spr_x, data->spr_y)))
-			{
 				data->buf[y][x] = i;
-			}
 			data->spr_y++;
 			y++;
 		}

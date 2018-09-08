@@ -15,7 +15,8 @@ NAME = wolf3d
 SRC_WOLF = get_next_line.c raycast.c\
 		other.c read.c main.c\
 		raycast2.c sdl.c keys.c\
-		sprite.c keys2.c door.c
+		sprite.c keys2.c door.c\
+		skybox.c
 
 OBJECT_WOLF = $(SRC_WOLF:.c=.o)
 

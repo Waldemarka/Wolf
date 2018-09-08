@@ -88,6 +88,6 @@ void	key_event(t_data *data)
 		if (keys[SDL_SCANCODE_D])
 			key_d(data);
 		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
-			other_keys(data, keys, event);
+			other_keys(data, keys);
 	}
 }

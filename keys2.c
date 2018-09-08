@@ -38,7 +38,43 @@ void	key_right(t_data *data)
 	data->plan_y = plan * sin(-0.05) + data->plan_y * cos(-0.05);
 }
 
-void	other_keys(t_data *data, const Uint8 *keys, SDL_Event	event)
+void	musix_key(t_data *data, const Uint8 *keys)
+{
+	if (keys[SDL_SCANCODE_KP_1])
+	{
+		data->nbr_sky = 0;
+		Mix_PlayMusic(data->mus[0], 1);
+	}
+	if (keys[SDL_SCANCODE_KP_2])
+	{
+		data->nbr_sky = 1;
+		Mix_PlayMusic(data->mus[1], 1);
+	}
+	if (keys[SDL_SCANCODE_KP_3])
+	{
+		data->nbr_sky = 2;
+		Mix_PlayMusic(data->mus[2], 1);
+	}
+}
+
+void	more_keys(t_data *data, const Uint8 *keys)
+{
+	if (keys[SDL_SCANCODE_LSHIFT])
+		data->speed = 0.08;
+	else
+		data->speed = 0.04;
+	if (keys[SDL_SCANCODE_1])
+		data->key_floor = 1;
+	if (keys[SDL_SCANCODE_2])
+		data->key_floor = 2;
+	if (keys[SDL_SCANCODE_3])
+		data->key_floor = 3;
+	if (keys[SDL_SCANCODE_4])
+		data->key_floor = 4;
+
+}
+
+void	other_keys(t_data *data, const Uint8 *keys)
 {
 	if (keys[SDL_SCANCODE_SPACE] && data->key_space != 1)
 	{
@@ -54,12 +90,10 @@ void	other_keys(t_data *data, const Uint8 *keys, SDL_Event	event)
 	}
 	if (keys[SDL_SCANCODE_E] && data->key_door != 1)
 	{
-		if (check_door(data) == 1)
+		if (check_door(data, 2) == 1 || check_door(data, 1) == 1)
 			data->key_door = 1;
 		data->start_time_door = SDL_GetTicks();
 	}
-	if (keys[SDL_SCANCODE_LSHIFT])
-		data->speed = 0.08;
-	else
-		data->speed = 0.04;
+	more_keys(data, keys);
+	musix_key(data, keys);
 }

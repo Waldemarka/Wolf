@@ -29,7 +29,8 @@
 
 # define WIDTH 1024
 # define HEIGHT 768
-
+# define WIDTH_SKY 4320
+# define HEIGHT_SKY 900
 #define C_Q (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
 
 typedef struct  s_sprites
@@ -57,6 +58,8 @@ typedef struct s_data
 	SDL_Surface *wall[13];
 	SDL_Surface *pist[3];
 	SDL_Surface *drob[7];
+	SDL_Surface *sky[3];
+	Mix_Music	*mus[3];
 
 	char		*name;
 	int			height_arr;
@@ -121,6 +124,8 @@ typedef struct s_data
 	int			dr_map_x;
 	int			dr_map_y;
 	int 		check_door;
+	int			key_floor;
+	int			nbr_sky;
 
 	int 		w;
 	int 		h;
@@ -155,9 +160,11 @@ void			put_pixel32(SDL_Surface *surface, int x, int y, int pixel);
 SDL_Surface		*load_image(char *path);
 void			key_left(t_data *data);
 void			key_right(t_data *data);
-void			other_keys(t_data *data, const Uint8 *keys, SDL_Event	event);
+void			other_keys(t_data *data, const Uint8 *keys);
 void			sprites(t_data *data);
-int				check_door(t_data *data);
+int				check_door(t_data *data, int step);
 void			door(t_data *data);
+void			skybox(t_data *data);
+Mix_Music		*load_music(char *path);
 
 #endif 

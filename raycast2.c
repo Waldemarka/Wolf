@@ -53,7 +53,9 @@ void	dr_floor(t_data *data)
 			(1.0 - data->weight) * data->pos_y;
 		data->floor_tex_x = (int)(data->current_floor_x * 256) % 256;
 		data->floor_tex_y = (int)(data->current_floor_y * 256) % 256;
-		data->buf[data->y][data->x] = get_pixel_int(data->floor, data->floor_tex_x, data->floor_tex_y);
+		if (data->key_floor != 2 && data->key_floor != 4)
+			data->buf[data->y][data->x] = get_pixel_int(data->floor, data->floor_tex_x, data->floor_tex_y);
+		if (data->key_floor != 1 && data->key_floor != 4)
 		data->buf[WIDTH / 4 * 3 - data->y][data->x] = get_pixel_int(data->up, data->floor_tex_x, data->floor_tex_y);
 	}
 }

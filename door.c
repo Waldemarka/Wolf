@@ -23,37 +23,37 @@ int		plus_minus(t_data *data, int y, int x)
 	return (0);
 }
 
-int		check_door(t_data *data)
+int		check_door(t_data *data, int step)
 {
-	if (data->array[((int)data->pos_y) + 1][(int)data->pos_x] >= 5
-		&& plus_minus(data,((int)data->pos_y) + 1, (int)data->pos_x) == 1
-		&& data->array[((int)data->pos_y) + 1][(int)data->pos_x] < 12)
+	if (data->array[((int)data->pos_y) + step][(int)data->pos_x] >= 5
+		&& plus_minus(data,((int)data->pos_y) + step, (int)data->pos_x) == 1
+		&& data->array[((int)data->pos_y) + step][(int)data->pos_x] < 12)
 	{
 		data->dr_map_x = (int)data->pos_x;
-		data->dr_map_y = ((int)data->pos_y) + 1;
+		data->dr_map_y = ((int)data->pos_y) + step;
 		return (1);
 	}
-	else if (data->array[((int)data->pos_y) - 1][(int)data->pos_x] >= 5
-		&& plus_minus(data,((int)data->pos_y) - 1, (int)data->pos_x) == 1
-		&& data->array[((int)data->pos_y) - 1][(int)data->pos_x] < 12)
+	else if (data->array[((int)data->pos_y) - step][(int)data->pos_x] >= 5
+		&& plus_minus(data,((int)data->pos_y) - step, (int)data->pos_x) == 1
+		&& data->array[((int)data->pos_y) - step][(int)data->pos_x] < 12)
 	{
 		data->dr_map_x = (int)data->pos_x;
-		data->dr_map_y = ((int)data->pos_y) - 1;
+		data->dr_map_y = ((int)data->pos_y) - step;
 		return (1);
 	}
-	else if (data->array[(int)data->pos_y][((int)data->pos_x) + 1] >= 5
-		&& plus_minus(data,(int)data->pos_y, ((int)data->pos_x) + 1) == 1
-		&& data->array[(int)data->pos_y][((int)data->pos_x) + 1] < 12)
+	else if (data->array[(int)data->pos_y][((int)data->pos_x) + step] >= 5
+		&& plus_minus(data,(int)data->pos_y, ((int)data->pos_x) + step) == 1
+		&& data->array[(int)data->pos_y][((int)data->pos_x) + step] < 12)
 	{
-		data->dr_map_x = ((int)data->pos_x) + 1;
+		data->dr_map_x = ((int)data->pos_x) + step;
 		data->dr_map_y = ((int)data->pos_y);
 		return (1);
 	}
-	else if (data->array[(int)data->pos_y][((int)data->pos_x) - 1] >= 5
-		&& plus_minus(data,(int)data->pos_y, ((int)data->pos_x) - 1) == 1
-		&& data->array[(int)data->pos_y][((int)data->pos_x) - 1] < 12)
+	else if (data->array[(int)data->pos_y][((int)data->pos_x) - step] >= 5
+		&& plus_minus(data,(int)data->pos_y, ((int)data->pos_x) - step) == 1
+		&& data->array[(int)data->pos_y][((int)data->pos_x) - step] < 12)
 	{
-		data->dr_map_x = ((int)data->pos_x) - 1;
+		data->dr_map_x = ((int)data->pos_x) - step;
 		data->dr_map_y = ((int)data->pos_y);
 		return (1);
 	}

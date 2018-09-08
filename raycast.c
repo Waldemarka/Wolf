@@ -93,6 +93,7 @@ void	calculate_drawing(t_data *data)
 void	raycasting(t_data *data)
 {
 	data->x = -1;
+	//skybox(data);
 	while (++data->x < data->w)
 	{
 		first_part_ray(data);
@@ -101,6 +102,6 @@ void	raycasting(t_data *data)
 		find_floorwall(data);
 		dr_floor(data);
 	}
-	printf("%f\n", data->dir_y);
+	printf("%f---%f\n", data->dir_y,data->dir_x);
 	sprites(data);
 }

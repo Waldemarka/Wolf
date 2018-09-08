@@ -24,6 +24,8 @@ void	init_all(t_data *data)
 	if (!(data->screen = SDL_CreateTexture(data->ren,
 		SDL_PIXELFORMAT_ARGB8888	, SDL_TEXTUREACCESS_TARGET, WIDTH, HEIGHT)))
 		ft_error(3);
+	if (Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+		ft_error(3);
 	data->dir_x = -1.0;
 	data->dir_y = 0.0;
 	data->plan_x = 0.0;
@@ -63,6 +65,8 @@ void	game(t_data *data)
 		SDL_UpdateTexture(data->screen, NULL, data->buf, WIDTH << 2);
 		SDL_RenderCopy(data->ren, data->screen, NULL, NULL);
 		SDL_RenderPresent(data->ren);
+		if (data->key_floor != 3)
+			skybox(data);
 		raycasting(data);
 		door(data);
 		key_event(data);
