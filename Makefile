@@ -12,11 +12,11 @@
 
 NAME = wolf3d
 
-SRC_WOLF = get_next_line.c raycast.c\
-		other.c read.c main.c\
-		raycast2.c sdl.c keys.c\
-		sprite.c keys2.c door.c\
-		skybox.c
+SRC_WOLF = ./files/get_next_line.c ./files/raycast.c\
+		./files/other.c ./files/read.c ./files/main.c\
+		./files/raycast2.c ./files/sdl.c ./files/keys.c\
+		./files/sprite.c ./files/keys2.c ./files/door.c\
+		./files/skybox.c
 
 OBJECT_WOLF = $(SRC_WOLF:.c=.o)
 

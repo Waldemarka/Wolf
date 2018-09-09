@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+  /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   first.c                                            :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/wolf.h"
+# include "wolf.h"
 
 void	init_all(t_data *data)
 {
@@ -32,10 +32,11 @@ void	init_all(t_data *data)
 	data->plan_y = 0.66;
 	data->nb_weapon = 1;
 	data->max_box = 7;
-	data->speed = 0.04;
+	data->speed = 0.08;
 	data->h = HEIGHT;
 	data->w = WIDTH;
-	load_texture(data);
+	data->key_floor = 1;
+	load_media(data);
 }
 
 void	ft_read(t_data *data)

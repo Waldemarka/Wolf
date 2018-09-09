@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   other.c                                            :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/wolf.h"
+# include "wolf.h"
 
 void 	ft_error(int num)
 {
@@ -26,7 +26,6 @@ void 	ft_error(int num)
 		ft_putstr("BAD LOAD\n");
 	if (num == 5)
 		ft_putstr("FINISH\n");
-	system("leaks wolf");
 	exit (1);
 }
 
@@ -75,7 +74,29 @@ void	check_rest(t_data *data)
 		ft_error(1);
 }
 
-void	load_texture(t_data *data)
+void	load_other_media(t_data *data)
+{
+	data->pist[0] = load_image("media/guns/pist1.png");
+	data->pist[1] = load_image("media/guns/pist2.png");
+	data->pist[2] = load_image("media/guns/pist3.png");
+	data->drob[0] = load_image("media/guns/drob1.png");
+	data->drob[1] = load_image("media/guns/drob2.png");
+	data->drob[2] = load_image("media/guns/drob3.png");
+	data->drob[3] = load_image("media/guns/drob4.png");
+	data->drob[4] = load_image("media/guns/drob5.png");
+	data->drob[5] = load_image("media/guns/drob6.png");
+	data->drob[6] = load_image("media/guns/drob7.png");
+	data->sky[0] = load_image("media/sky/sky2.jpg");
+	data->sky[1] = load_image("media/sky/sky.jpg");
+	data->sky[2] = load_image("media/sky/sky1.jpg");
+	data->mus[0] = load_music("media/music/Ben_Howard.mp3");
+	data->mus[1] = load_music("media/music/Valentin.mp3");
+	data->mus[2] = load_music("media/music/Saje_Our_Story.mp3");
+	data->shots[0] = load_music("media/music/pist.mp3");
+	data->shots[1] = load_music("media/music/drobov.mp3");
+}
+
+void	load_media(t_data *data)
 {
 	data->up = load_image("media/walls_etc/upper.png");
 	data->floor = load_image("media/walls_etc/flor.jpg");
@@ -92,20 +113,5 @@ void	load_texture(t_data *data)
 	data->wall[10] = load_image("media/door/door_7.png");
 	data->wall[11] = load_image("media/door/door_8.png");
 	data->wall[12] = load_image("media/door/door_9.png");
-	data->pist[0] = load_image("media/guns/pist1.png");
-	data->pist[1] = load_image("media/guns/pist2.png");
-	data->pist[2] = load_image("media/guns/pist3.png");
-	data->drob[0] = load_image("media/guns/drob1.png");
-	data->drob[1] = load_image("media/guns/drob2.png");
-	data->drob[2] = load_image("media/guns/drob3.png");
-	data->drob[3] = load_image("media/guns/drob4.png");
-	data->drob[4] = load_image("media/guns/drob5.png");
-	data->drob[5] = load_image("media/guns/drob6.png");
-	data->drob[6] = load_image("media/guns/drob7.png");
-	data->sky[0] = load_image("media/sky2.jpg");
-	data->sky[1] = load_image("media/sky.jpg");
-	data->sky[2] = load_image("media/sky1.jpg");
-	data->mus[0] = load_music("media/music/Ben_Howard.mp3");
-	data->mus[1] = load_music("media/music/Valentin.mp3");
-	data->mus[2] = load_music("media/music/Saje_Our_Story.mp3");	
+	load_other_media(data);
 }

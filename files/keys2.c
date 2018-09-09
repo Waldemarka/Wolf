@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   keys2.c                                            :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/wolf.h"
+# include "wolf.h"
 
 void	key_left(t_data *data)
 {
@@ -40,17 +40,17 @@ void	key_right(t_data *data)
 
 void	musix_key(t_data *data, const Uint8 *keys)
 {
-	if (keys[SDL_SCANCODE_KP_1])
+	if (keys[SDL_SCANCODE_KP_1] && data->nbr_sky != 0)
 	{
 		data->nbr_sky = 0;
 		Mix_PlayMusic(data->mus[0], 1);
 	}
-	if (keys[SDL_SCANCODE_KP_2])
+	if (keys[SDL_SCANCODE_KP_2] && data->nbr_sky != 1)
 	{
 		data->nbr_sky = 1;
 		Mix_PlayMusic(data->mus[1], 1);
 	}
-	if (keys[SDL_SCANCODE_KP_3])
+	if (keys[SDL_SCANCODE_KP_3] && data->nbr_sky != 2)
 	{
 		data->nbr_sky = 2;
 		Mix_PlayMusic(data->mus[2], 1);
@@ -59,10 +59,6 @@ void	musix_key(t_data *data, const Uint8 *keys)
 
 void	more_keys(t_data *data, const Uint8 *keys)
 {
-	if (keys[SDL_SCANCODE_LSHIFT])
-		data->speed = 0.08;
-	else
-		data->speed = 0.04;
 	if (keys[SDL_SCANCODE_1])
 		data->key_floor = 1;
 	if (keys[SDL_SCANCODE_2])

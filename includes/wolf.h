@@ -53,13 +53,14 @@ typedef struct s_data
 	SDL_Surface *up;
 	SDL_Surface *floor;
 	SDL_Surface *sec;
-	t_sprites	sprit;
 	SDL_Surface *now;
 	SDL_Surface *wall[13];
 	SDL_Surface *pist[3];
 	SDL_Surface *drob[7];
 	SDL_Surface *sky[3];
 	Mix_Music	*mus[3];
+	Mix_Music	*shots[2];
+	t_sprites	sprit;
 
 	char		*name;
 	int			height_arr;
@@ -147,7 +148,7 @@ void			make_arr(t_data *data, char **str);
 int				**int_malloc(t_data *data);
 void			check_rest(t_data *data);
 int 			len_int(char *str);
-void			load_texture(t_data *data);
+void			load_media(t_data *data);
 void			raycasting(t_data *data);
 void			find_floorwall(t_data *data);
 void			dr_floor(t_data *data);
