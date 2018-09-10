@@ -44,6 +44,11 @@ typedef struct  s_sprites
 	int 		max_coord_y;
 }				t_sprites;
 
+/*typedef struct s_raycast
+{
+	
+}				t_raycast;*/
+
 typedef struct s_data
 {
 	SDL_Window	*win;
@@ -62,6 +67,7 @@ typedef struct s_data
 	Mix_Music	*shots[2];
 	t_sprites	sprit;
 
+	int			fd;
 	char		*name;
 	int			height_arr;
 	int			width_arr;
@@ -118,6 +124,7 @@ typedef struct s_data
 	int 		spr_y;
 	int			nb_weapon;
 	int 		key_door;
+	int 		door_cen;
 	int 		start_time_door;
 	int 		time_door;
 	int 		max_box;
@@ -128,13 +135,11 @@ typedef struct s_data
 	int			key_floor;
 	int			nbr_sky;
 
-	int 		w;
-	int 		h;
 	int			for_exit;
 	int 		x;
 	int			y;
 	int			d;
-	int 		q;
+	int 		count;
 }				t_data;
 
 SDL_Texture *load_img(SDL_Renderer *ren, SDL_Surface *bmp, char *imag);
@@ -154,8 +159,6 @@ void			find_floorwall(t_data *data);
 void			dr_floor(t_data *data);
 void 			draw_wall(t_data *data);
 void			key_event(t_data *data);
-
-
 unsigned int	get_pixel_int(SDL_Surface *surface, int x, int y);
 void			put_pixel32(SDL_Surface *surface, int x, int y, int pixel);
 SDL_Surface		*load_image(char *path);
@@ -163,7 +166,7 @@ void			key_left(t_data *data);
 void			key_right(t_data *data);
 void			other_keys(t_data *data, const Uint8 *keys);
 void			sprites(t_data *data);
-int				check_door(t_data *data, int step);
+void			chek_door(t_data *data);
 void			door(t_data *data);
 void			skybox(t_data *data);
 Mix_Music		*load_music(char *path);

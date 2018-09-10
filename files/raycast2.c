@@ -79,7 +79,7 @@ void 	draw_wall(t_data *data)
 	data->y = data->draw_start;
 	while (++data->y < data->draw_end)
 	{
-		data->d = data->y * 256 - data->h * 128 + data->line_height * 128;
+		data->d = data->y * 256 - HEIGHT * 128 + data->line_height * 128;
 		data->tex_y = ((data->d * 256.0) / data->line_height / 256);
 		if ((color = get_pixel_int(data->wall[n], data->tex_x, data->tex_y)) != 0)
 			data->buf[data->y][data->x] = color;

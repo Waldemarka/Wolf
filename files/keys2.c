@@ -38,7 +38,7 @@ void	key_right(t_data *data)
 	data->plan_y = plan * sin(-0.05) + data->plan_y * cos(-0.05);
 }
 
-void	musix_key(t_data *data, const Uint8 *keys)
+void	music_key(t_data *data, const Uint8 *keys)
 {
 	if (keys[SDL_SCANCODE_KP_1] && data->nbr_sky != 0)
 	{
@@ -76,6 +76,7 @@ void	other_keys(t_data *data, const Uint8 *keys)
 	{
 		data->key_space = 1;
 		data->start_time = SDL_GetTicks();
+		Mix_PlayMusic(data->shots[data->nb_weapon - 1], 2);
 	}
 	if (keys[SDL_SCANCODE_Q] && data->key_space == 0)
 	{
@@ -86,10 +87,9 @@ void	other_keys(t_data *data, const Uint8 *keys)
 	}
 	if (keys[SDL_SCANCODE_E] && data->key_door != 1)
 	{
-		if (check_door(data, 2) == 1 || check_door(data, 1) == 1)
-			data->key_door = 1;
+		data->door_cen = 1;
 		data->start_time_door = SDL_GetTicks();
 	}
 	more_keys(data, keys);
-	musix_key(data, keys);
+	music_key(data, keys);
 }

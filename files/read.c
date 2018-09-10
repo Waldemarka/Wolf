@@ -14,17 +14,15 @@
 
 char	**open_read(t_data *data)
 {
-
-	int		fd;
 	char	*line;
 	char	*str;
 	char	**ret;
 
 	str = NULL;
 	line = NULL;
-	if ((fd = open(data->name, O_RDONLY)) == -1)
+	if ((data->fd = open(data->name, O_RDONLY)) == -1)
 		ft_error(3);
-	get_next_line(fd, &line);
+	get_next_line(data->fd, &line);
 	if (!line || ft_strlen(line) < 1)
 		ft_error(2);
 	str = ft_strdup(line);
@@ -32,11 +30,11 @@ char	**open_read(t_data *data)
 	{
 		free(line);
 		str = ft_joinfree(str, "\n", 3);
-		get_next_line(fd, &line);
+		get_next_line(data->fd, &line);
 		if (line != NULL)
 			str = ft_joinfree(str, line, 3);
 	}
-	close(fd);
+	close(data->fd);
 	ret = ft_strsplit(str, '\n');
 	free(str);
 	return (ret);

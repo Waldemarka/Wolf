@@ -14,25 +14,25 @@
 
 SDL_Surface	*guns(t_data *data)
 {
-	if (data->q == 0 && data->nb_weapon == 1)
+	if (data->count == 0 && data->nb_weapon == 1)
 		return(data->pist[0]);
-	if (data->q == 1 && data->nb_weapon == 1)
+	if (data->count == 1 && data->nb_weapon == 1)
 		return(data->pist[1]);
-	if (data->q == 2 && data->nb_weapon == 1)
+	if (data->count == 2 && data->nb_weapon == 1)
 		return(data->pist[2]);
-	if (data->q == 0 && data->nb_weapon == 2)
+	if (data->count == 0 && data->nb_weapon == 2)
 		return(data->drob[0]);
-	if (data->q == 1 && data->nb_weapon == 2)
+	if (data->count == 1 && data->nb_weapon == 2)
 		return(data->drob[1]);
-	if (data->q == 2 && data->nb_weapon == 2)
+	if (data->count == 2 && data->nb_weapon == 2)
 		return(data->drob[2]);
-	if (data->q == 3 && data->nb_weapon == 2)
+	if (data->count == 3 && data->nb_weapon == 2)
 		return(data->drob[3]);
-	if (data->q == 4 && data->nb_weapon == 2)
+	if (data->count == 4 && data->nb_weapon == 2)
 		return(data->drob[4]);
-	if (data->q == 5 && data->nb_weapon == 2)
+	if (data->count == 5 && data->nb_weapon == 2)
 		return(data->drob[5]);
-	if (data->q == 6 && data->nb_weapon == 2)
+	if (data->count == 6 && data->nb_weapon == 2)
 		return(data->drob[6]);
 	return (NULL);
 }
@@ -88,21 +88,21 @@ void	draw_animations(t_data *data)
 
 	if (data->key_space == 1)
 	{
-		if (data->time <= data->start_time + (data->sprit.timing * (data->q + 1)))
+		if (data->time <= data->start_time + (data->sprit.timing * (data->count + 1)))
 			animat(data, guns(data));
-		if (data->time >= data->start_time + (data->sprit.timing * (data->q + 1)))
+		if (data->time >= data->start_time + (data->sprit.timing * (data->count + 1)))
 		{
 			animat(data, guns(data));
-			data->q++;
+			data->count++;
 		}
-		if (data->q >= data->sprit.iterat)
+		if (data->count >= data->sprit.iterat)
 		{
-			data->q = 0;
+			data->count = 0;
 			data->key_space = 0;
 		}
 	}
 	if (data->key_space == 0)
-		data->q = 0;
+		data->count = 0;
 }
 
 void	sprites(t_data *data)

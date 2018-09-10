@@ -61,7 +61,7 @@ void	dda_ray(t_data * data)
 
 void	first_part_ray(t_data *data)
 {
-	data->camerX = (double)((data->x * 2) / (double)(data->w) - 1);
+	data->camerX = (double)((data->x * 2) / (double)(WIDTH) - 1);
 	data->ray_dir_x = data->dir_x + data->plan_x * data->camerX;
 	data->ray_dir_y = data->dir_y + data->plan_y * data->camerX;
 	data->map_x = (int)data->pos_x;
@@ -81,27 +81,27 @@ void	calculate_drawing(t_data *data)
 	else
 		data->perp_wall_dist = (data->map_y - data->pos_y + (1 - data->step_y)
 			/ 2) / data->ray_dir_y;
-	data->line_height = (int)(data->h / data->perp_wall_dist);
-	data->draw_start = -data->line_height / 2 + data->h / 2;
+	data->line_height = (int)(HEIGHT / data->perp_wall_dist);
+	data->draw_start = -data->line_height / 2 + HEIGHT / 2;
 	if (data->draw_start < 0)
 		data->draw_start = 0;
-	data->draw_end = data->line_height / 2 + data->h / 2;
-	if (data->draw_end >= data->h)
-		data->draw_end = data->h - 1;
+	data->draw_end = data->line_height / 2 + HEIGHT / 2;
+	if (data->draw_end >= HEIGHT)
+		data->draw_end = HEIGHT - 1;
 }
 
 void	raycasting(t_data *data)
 {
 	data->x = -1;
-	//skybox(data);
-	while (++data->x < data->w)
+	while (++data->x < WIDTH)
 	{
 		first_part_ray(data);
 		calculate_drawing(data);
 		draw_wall(data);
 		find_floorwall(data);
 		dr_floor(data);
+		if (data->x == WIDTH / 2)
+			chek_door(data);
 	}
-	printf("%f---%f\n", data->dir_y,data->dir_x);
 	sprites(data);
 }

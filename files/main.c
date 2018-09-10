@@ -33,8 +33,6 @@ void	init_all(t_data *data)
 	data->nb_weapon = 1;
 	data->max_box = 7;
 	data->speed = 0.08;
-	data->h = HEIGHT;
-	data->w = WIDTH;
 	data->key_floor = 1;
 	load_media(data);
 }
@@ -83,6 +81,9 @@ int main(int argc, char *argv[])
 		if (!(data = (t_data *)malloc(sizeof(t_data))))
 			ft_error(1);
 		data->name = argv[1];
+		data->fd = open(data->name, O_DIRECTORY);
+		if (data->fd >= 0)
+			ft_error(1);
 		ft_read(data);
 		init_all(data);
 		game(data);
