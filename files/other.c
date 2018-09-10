@@ -64,13 +64,13 @@ void	check_rest(t_data *data)
 	while (++q != data->height_arr)
 		if (data->array[q][0] != 1 || data->array[q][data->width_arr - 1] != 1)
 			ft_error(2);
-	if (data->array[(int)data->pos_y][(int)data->pos_x] != 0)
+	if (data->array[(int)POS_Y][(int)POS_X] != 0)
 		ft_error(2);
-	if ((int)data->pos_y == 0 || (int)data->pos_y == 1 ||
-		(int)data->pos_y == data->height_arr - 1 || (int)data->pos_y == data->height_arr - 2)
+	if ((int)POS_Y == 0 || (int)POS_Y == 1 ||
+		(int)POS_Y == data->height_arr - 1 || (int)POS_Y == data->height_arr - 2)
 		ft_error(2);
-	if ((int)data->pos_x == 0 || (int)data->pos_x == 1 ||
-		(int)data->pos_x == data->width_arr - 1 || (int)data->pos_x == data->width_arr - 2)
+	if ((int)POS_X == 0 || (int)POS_X == 1 ||
+		(int)POS_X == data->width_arr - 1 || (int)POS_X == data->width_arr - 2)
 		ft_error(2);
 }
 

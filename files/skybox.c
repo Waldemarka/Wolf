@@ -19,10 +19,10 @@ void	skybox(t_data *data) // 7661 972
 	int y;
 
 	start_x = 0;
-	if (data->dir_y <= 0)
-		start_x = (int)(WIDTH_SKY / 2 - (data->dir_x / (2 /360.0) * ((double)WIDTH_SKY / 2 / 360.0)));
+	if (DIR_Y <= 0)
+		start_x = (int)(WIDTH_SKY / 2 - (DIR_X / (2 /360.0) * ((double)WIDTH_SKY / 2 / 360.0)));
 	else
-		start_x = (int)(data->dir_x / (2.0 / 360.0) * ((double)WIDTH_SKY / 2 /360.0));
+		start_x = (int)(DIR_X / (2.0 / 360.0) * ((double)WIDTH_SKY / 2 /360.0));
 
 	x = 0;
 	while (x != WIDTH)

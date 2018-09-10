@@ -31,6 +31,28 @@
 # define HEIGHT 768
 # define WIDTH_SKY 4320
 # define HEIGHT_SKY 900
+# define POS_X data->raycast.pos_x
+# define POS_Y data->raycast.pos_y
+# define DIR_X data->raycast.dir_x
+# define DIR_Y data->raycast.dir_y
+# define RAY_DIR_X data->raycast.ray_dir_x
+# define RAY_DIR_Y data->raycast.ray_dir_y
+# define PLAN_X data->raycast.plan_x
+# define PLAN_Y data->raycast.plan_y
+# define MAP_X data->raycast.map_x
+# define MAP_Y data->raycast.map_y
+# define CAMER_X data->raycast.camerX
+# define DELTA_DIST_X data->raycast.delta_dist_x
+# define DELTA_DIST_Y data->raycast.delta_dist_y
+# define SIDE_DIST_X data->raycast.side_dist_x
+# define SIDE_DIST_Y data->raycast.side_dist_y
+# define PERP_WALL_DIST data->raycast.perp_wall_dist
+# define HIT data->raycast.hit
+# define SIDE data->raycast.side
+# define LINE_HEIGHT data->raycast.line_height
+# define DRAW_START data->raycast.draw_start
+# define DRAW_END data->raycast.draw_end
+
 #define C_Q (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
 
 typedef struct  s_sprites
@@ -44,10 +66,30 @@ typedef struct  s_sprites
 	int 		max_coord_y;
 }				t_sprites;
 
-/*typedef struct s_raycast
+typedef struct s_raycast
 {
-	
-}				t_raycast;*/
+	double		camerX;
+	double		pos_x;
+	double 		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		plan_x;
+	double		plan_y;
+	int 		map_x;
+	int 		map_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	int 		line_height;	
+	int 		side;
+	int			hit;
+	int			draw_start;
+	int			draw_end;
+}				t_raycast;
 
 typedef struct s_data
 {
@@ -66,7 +108,7 @@ typedef struct s_data
 	Mix_Music	*mus[3];
 	Mix_Music	*shots[2];
 	t_sprites	sprit;
-
+	t_raycast	raycast;
 	int			fd;
 	char		*name;
 	int			height_arr;
@@ -74,30 +116,6 @@ typedef struct s_data
 	int 		**array;
 	int			buf[HEIGHT][WIDTH];
 	
-	double		pos_x;
-	double 		pos_y;
-	double		ray_pos_x;
-	double 		ray_pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	double		plan_x;
-	double		plan_y;
-	double		camerX;
-	int 		map_x;
-	int 		map_y;
-	
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		perp_wall_dist;
-	int 		line_height;	
-	int 		side;
-	int			hit;
-	int			draw_start;
-	int			draw_end;
 	int			step_x;
 	int			step_y;
 	double		speed;

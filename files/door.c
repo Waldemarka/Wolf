@@ -15,17 +15,17 @@
 void	chek_door(t_data *data)
 {
 	if (data->door_cen == 1 &&
-		data->array[data->map_y][data->map_x] >= 5 &&
-		data->array[data->map_y][data->map_x] < 12 &&
-		((data->array[data->map_y + 1][data->map_x] > 0 &&
-		data->array[data->map_y - 1][data->map_x] > 0) ||
-		(data->array[data->map_y][data->map_x + 1] > 0 &&
-		data->array[data->map_y][data->map_x - 1] > 0)) &&
-		data->perp_wall_dist < 2.5)
+		data->array[MAP_Y][MAP_X] >= 5 &&
+		data->array[MAP_Y][MAP_X] < 12 &&
+		((data->array[MAP_Y + 1][MAP_X] > 0 &&
+		data->array[MAP_Y - 1][MAP_X] > 0) ||
+		(data->array[MAP_Y][MAP_X + 1] > 0 &&
+		data->array[MAP_Y][MAP_X - 1] > 0)) &&
+		PERP_WALL_DIST < 2.5)
 	{
 		data->key_door = 1;
-		data->dr_map_x = data->map_x;
-		data->dr_map_y = data->map_y;
+		data->dr_map_x = MAP_X;
+		data->dr_map_y = MAP_Y;
 	}
 	data->door_cen = 0;
 }

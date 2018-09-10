@@ -14,22 +14,22 @@
 
 void	key_s(t_data *data)
 {
-	if (data->array[(int)(data->pos_y)][(int)(data->pos_x
-		- data->dir_x * data->speed)] == 0)
-			data->pos_x -= data->dir_x * data->speed;
-	if (data->array[(int)(data->pos_y - data->dir_y
-		* data->speed)][(int)(data->pos_x)] == 0)
-			data->pos_y -= data->dir_y * data->speed;
+	if (data->array[(int)(POS_Y)][(int)(POS_X
+		- DIR_X * data->speed)] == 0)
+			POS_X -= DIR_X * data->speed;
+	if (data->array[(int)(POS_Y - DIR_Y
+		* data->speed)][(int)(POS_X)] == 0)
+			POS_Y -= DIR_Y * data->speed;
 }
 
 void	key_w(t_data *data)
 {
-	if (data->array[(int)(data->pos_y)][(int)(data->pos_x
-		+ data->dir_x * data->speed)] == 0)
-			data->pos_x += data->dir_x * data->speed;
-	if (data->array[(int)(data->pos_y + data->dir_y
-		* data->speed)][(int)(data->pos_x)] == 0)
-			data->pos_y += data->dir_y * data->speed;
+	if (data->array[(int)(POS_Y)][(int)(POS_X
+		+ DIR_X * data->speed)] == 0)
+			POS_X += DIR_X * data->speed;
+	if (data->array[(int)(POS_Y + DIR_Y
+		* data->speed)][(int)(POS_X)] == 0)
+			POS_Y += DIR_Y * data->speed;
 }
 
 void	key_a(t_data *data)
@@ -37,14 +37,14 @@ void	key_a(t_data *data)
 	float dirx;
 	float diry;
 
-	dirx = data->dir_x * cos(1.55) - data->dir_y * sin(1.55);
-	diry = data->dir_x * sin(1.55) + data->dir_y * cos(1.55);
-	if (data->array[(int)(data->pos_y)][(int)(data->pos_x
+	dirx = DIR_X * cos(1.55) - DIR_Y * sin(1.55);
+	diry = DIR_X * sin(1.55) + DIR_Y * cos(1.55);
+	if (data->array[(int)(POS_Y)][(int)(POS_X
 		+ dirx * data->speed)] == 0)
-			data->pos_x += dirx * data->speed;
-	if (data->array[(int)(data->pos_y + diry * data->speed)]
-		[(int)(data->pos_x)] == 0)
-			data->pos_y += diry * data->speed;
+			POS_X += dirx * data->speed;
+	if (data->array[(int)(POS_Y + diry * data->speed)]
+		[(int)(POS_X)] == 0)
+			POS_Y += diry * data->speed;
 
 }
 
@@ -53,14 +53,14 @@ void	key_d(t_data *data)
 	float dirx;
 	float diry;
 
-	dirx = data->dir_x * cos(-1.55) - data->dir_y * sin(-1.55);
-	diry = data->dir_x * sin(-1.55) + data->dir_y * cos(-1.55);
-	if (data->array[(int)(data->pos_y)][(int)(data->pos_x
+	dirx = DIR_X * cos(-1.55) - DIR_Y * sin(-1.55);
+	diry = DIR_X * sin(-1.55) + DIR_Y * cos(-1.55);
+	if (data->array[(int)(POS_Y)][(int)(POS_X
 		+ dirx * data->speed)] == 0)
-			data->pos_x += dirx * data->speed;
-	if (data->array[(int)(data->pos_y + diry
-		* data->speed)][(int)(data->pos_x)] == 0)
-			data->pos_y += diry * data->speed;
+			POS_X += dirx * data->speed;
+	if (data->array[(int)(POS_Y + diry
+		* data->speed)][(int)(POS_X)] == 0)
+			POS_Y += diry * data->speed;
 }
 
 void	key_event(t_data *data)

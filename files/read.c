@@ -50,10 +50,10 @@ void	first_ar(t_data *data, char **str)
 		ft_error(2);
 	data->width_arr = ft_atoi(str[0]);
 	data->height_arr = ft_atoi(str[1]);
-	data->pos_x = (double)ft_atoi(str[2]);
-	data->pos_y = (double)ft_atoi(str[3]);
+	POS_X = (double)ft_atoi(str[2]);
+	POS_Y = (double)ft_atoi(str[3]);
 	if (data->width_arr < 4 || data->height_arr < 4 ||
-		data->pos_x > data->width_arr || data->pos_y > data->height_arr)
+		POS_X > data->width_arr || POS_Y > data->height_arr)
 		ft_error(2);
 }
 

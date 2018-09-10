@@ -14,80 +14,80 @@
 
 void	second_part_ray(t_data *data)
 {
-	if (data->ray_dir_x < 0)
+	if (RAY_DIR_X < 0)
 	{
 		data->step_x = -1;
-		data->side_dist_x = (data->pos_x - data->map_x) * data->delta_dist_x;
+		SIDE_DIST_X = (POS_X - MAP_X) * DELTA_DIST_X;
 	}
 	else
 	{
 		data->step_x = 1;
-		data->side_dist_x = (data->map_x + 1.0 - data->pos_x)
-		* data->delta_dist_x;
+		SIDE_DIST_X = (MAP_X + 1.0 - POS_X)
+		* DELTA_DIST_X;
 	}
-	if (data->ray_dir_y < 0)
+	if (RAY_DIR_Y < 0)
 	{
 		data->step_y = -1;
-		data->side_dist_y = (data->pos_y - data->map_y) * data->delta_dist_y;
+		SIDE_DIST_Y = (POS_Y - MAP_Y) * DELTA_DIST_Y;
 	}
 	else
 	{
 		data->step_y = 1;
-		data->side_dist_y = (data->map_y + 1.0 - data->pos_y) * data->delta_dist_y;
+		SIDE_DIST_Y = (MAP_Y + 1.0 - POS_Y) * DELTA_DIST_Y;
 	}
 }
 
 void	dda_ray(t_data * data)
 {
-	while (data->hit == 0)
+	while (HIT == 0)
 	{
-		if (data->side_dist_x < data->side_dist_y)
+		if (SIDE_DIST_X < SIDE_DIST_Y)
 		{
-			data->side_dist_x += data->delta_dist_x;
-			data->map_x += data->step_x;
-			data->side = 0;
+			SIDE_DIST_X += DELTA_DIST_X;
+			MAP_X += data->step_x;
+			SIDE = 0;
 		}
 		else
 		{
-			data->side_dist_y += data->delta_dist_y;
-			data->map_y += data->step_y;
-			data->side = 1;
+			SIDE_DIST_Y += DELTA_DIST_Y;
+			MAP_Y += data->step_y;
+			SIDE = 1;
 		}
-		if ((data->array[data->map_y][data->map_x] > 0
-			&& data->array[data->map_y][data->map_x] < data->max_box))
-			data->hit = 1;
+		if ((data->array[MAP_Y][MAP_X] > 0
+			&& data->array[MAP_Y][MAP_X] < data->max_box))
+			HIT = 1;
 	}
 }
 
 void	first_part_ray(t_data *data)
 {
-	data->camerX = (double)((data->x * 2) / (double)(WIDTH) - 1);
-	data->ray_dir_x = data->dir_x + data->plan_x * data->camerX;
-	data->ray_dir_y = data->dir_y + data->plan_y * data->camerX;
-	data->map_x = (int)data->pos_x;
-	data->map_y = (int)data->pos_y;
-	data->delta_dist_x = fabs(1 / data->ray_dir_x);
-	data->delta_dist_y = fabs(1 / data->ray_dir_y);
-	data->hit = 0;
+	CAMER_X = (double)((data->x * 2) / (double)(WIDTH) - 1);
+	RAY_DIR_X = DIR_X + PLAN_X * CAMER_X;
+	RAY_DIR_Y = DIR_Y + PLAN_Y * CAMER_X;
+	MAP_X = (int)POS_X;
+	MAP_Y = (int)POS_Y;
+	DELTA_DIST_X = fabs(1 / RAY_DIR_X);
+	DELTA_DIST_Y = fabs(1 / RAY_DIR_Y);
+	HIT = 0;
 	second_part_ray(data);
 	dda_ray(data);
 }
 
 void	calculate_drawing(t_data *data)
 {
-	if (data->side == 0)
-		data->perp_wall_dist = (data->map_x - data->pos_x + (1 - data->step_x)
-			/ 2) / data->ray_dir_x;
+	if (SIDE == 0)
+		PERP_WALL_DIST = (MAP_X - POS_X + (1 - data->step_x)
+			/ 2) / RAY_DIR_X;
 	else
-		data->perp_wall_dist = (data->map_y - data->pos_y + (1 - data->step_y)
-			/ 2) / data->ray_dir_y;
-	data->line_height = (int)(HEIGHT / data->perp_wall_dist);
-	data->draw_start = -data->line_height / 2 + HEIGHT / 2;
-	if (data->draw_start < 0)
-		data->draw_start = 0;
-	data->draw_end = data->line_height / 2 + HEIGHT / 2;
-	if (data->draw_end >= HEIGHT)
-		data->draw_end = HEIGHT - 1;
+		PERP_WALL_DIST = (MAP_Y - POS_Y + (1 - data->step_y)
+			/ 2) / RAY_DIR_Y;
+	LINE_HEIGHT = (int)(HEIGHT / PERP_WALL_DIST);
+	DRAW_START = -LINE_HEIGHT / 2 + HEIGHT / 2;
+	if (DRAW_START < 0)
+		DRAW_START = 0;
+	DRAW_END = LINE_HEIGHT / 2 + HEIGHT / 2;
+	if (DRAW_END >= HEIGHT)
+		DRAW_END = HEIGHT - 1;
 }
 
 void	raycasting(t_data *data)

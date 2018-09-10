@@ -17,12 +17,12 @@ void	key_left(t_data *data)
 	double plan;
 	double dr;
 
-	dr = data->dir_x;
-	data->dir_x = data->dir_x * cos(0.05) - data->dir_y * sin(0.05);
-	data->dir_y = dr * sin(0.05) + data->dir_y * cos(0.05);
-	plan = data->plan_x;
-	data->plan_x = data->plan_x * cos(0.05) - data->plan_y * sin(0.05);
-	data->plan_y = plan * sin(0.05) + data->plan_y * cos(0.05);
+	dr = DIR_X;
+	DIR_X = DIR_X * cos(0.05) - DIR_Y * sin(0.05);
+	DIR_Y = dr * sin(0.05) + DIR_Y * cos(0.05);
+	plan = PLAN_X;
+	PLAN_X = PLAN_X * cos(0.05) - PLAN_Y * sin(0.05);
+	PLAN_Y = plan * sin(0.05) + PLAN_Y * cos(0.05);
 }
 
 void	key_right(t_data *data)
@@ -30,12 +30,12 @@ void	key_right(t_data *data)
 	double plan;
 	double dr;
 
-	dr = data->dir_x;
-	data->dir_x = data->dir_x * cos(-0.05) - data->dir_y * sin(-0.05);
-	data->dir_y = dr * sin(-0.05) + data->dir_y * cos(-0.05);
-	plan = data->plan_x;
-	data->plan_x = data->plan_x * cos(-0.05) - data->plan_y * sin(-0.05);
-	data->plan_y = plan * sin(-0.05) + data->plan_y * cos(-0.05);
+	dr = DIR_X;
+	DIR_X = DIR_X * cos(-0.05) - DIR_Y * sin(-0.05);
+	DIR_Y = dr * sin(-0.05) + DIR_Y * cos(-0.05);
+	plan = PLAN_X;
+	PLAN_X = PLAN_X * cos(-0.05) - PLAN_Y * sin(-0.05);
+	PLAN_Y = plan * sin(-0.05) + PLAN_Y * cos(-0.05);
 }
 
 void	music_key(t_data *data, const Uint8 *keys)
@@ -74,9 +74,9 @@ void	other_keys(t_data *data, const Uint8 *keys)
 {
 	if (keys[SDL_SCANCODE_SPACE] && data->key_space != 1)
 	{
+		Mix_PlayMusic(data->shots[data->nb_weapon - 1], 1);
 		data->key_space = 1;
 		data->start_time = SDL_GetTicks();
-		Mix_PlayMusic(data->shots[data->nb_weapon - 1], 2);
 	}
 	if (keys[SDL_SCANCODE_Q] && data->key_space == 0)
 	{

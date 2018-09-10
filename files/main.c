@@ -26,10 +26,10 @@ void	init_all(t_data *data)
 		ft_error(3);
 	if (Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
 		ft_error(3);
-	data->dir_x = -1.0;
-	data->dir_y = 0.0;
-	data->plan_x = 0.0;
-	data->plan_y = 0.66;
+	DIR_X = -1.0;
+	DIR_Y = 0.0;
+	PLAN_X = 0.0;
+	PLAN_Y = 0.66;
 	data->nb_weapon = 1;
 	data->max_box = 7;
 	data->speed = 0.08;
