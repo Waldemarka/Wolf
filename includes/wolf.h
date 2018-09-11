@@ -52,6 +52,19 @@
 # define LINE_HEIGHT data->raycast.line_height
 # define DRAW_START data->raycast.draw_start
 # define DRAW_END data->raycast.draw_end
+# define STEP_X data->raycast.step_x
+# define STEP_Y data->raycast.step_y
+# define WALL_X data->raycast.wall_x
+# define TEX_X data->raycast.tex_x
+# define TEX_Y data->raycast.tex_y
+# define FLOOR_WALL_X data->raycast.floor_wall_x
+# define FLOOR_WALL_Y data->raycast.floor_wall_y
+# define DIST_PLAYER data->raycast.dist_player
+# define CURRENT_FLOOR_X data->raycast.current_floor_x
+# define CURRENT_FLOOR_Y data->raycast.current_floor_y
+# define FLOOR_TEX_X data->raycast.floor_tex_x
+# define FLOOR_TEX_Y data->raycast.floor_tex_y
+# define CURR_DIST data->raycast.current_dist
 
 #define C_Q (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
 
@@ -77,65 +90,61 @@ typedef struct s_raycast
 	double		ray_dir_y;
 	double		plan_x;
 	double		plan_y;
-	int 		map_x;
-	int 		map_y;
 	double		delta_dist_x;
 	double		delta_dist_y;
 	double		side_dist_x;
 	double		side_dist_y;
 	double		perp_wall_dist;
+	double		wall_x;
+	double		floor_wall_x;
+	double		floor_wall_y;
+	double		dist_player;
+	int 		map_x;
+	int 		map_y;
 	int 		line_height;	
 	int 		side;
 	int			hit;
 	int			draw_start;
 	int			draw_end;
-}				t_raycast;
-
-typedef struct s_data
-{
-	SDL_Window	*win;
-	SDL_Renderer	*ren;
-	SDL_Surface *bmp;
-	SDL_Texture *screen;
-	SDL_Surface *up;
-	SDL_Surface *floor;
-	SDL_Surface *sec;
-	SDL_Surface *now;
-	SDL_Surface *wall[13];
-	SDL_Surface *pist[3];
-	SDL_Surface *drob[7];
-	SDL_Surface *sky[3];
-	Mix_Music	*mus[3];
-	Mix_Music	*shots[2];
-	t_sprites	sprit;
-	t_raycast	raycast;
-	int			fd;
-	char		*name;
-	int			height_arr;
-	int			width_arr;
-	int 		**array;
-	int			buf[HEIGHT][WIDTH];
-	
 	int			step_x;
 	int			step_y;
-	double		speed;
-
-	double		wall_x;
 	int			tex_x;
 	int			tex_y;
-	double		floor_wall_x;
-	double		floor_wall_y;
-	double		dist_player;
+	
 	double		current_floor_x;
 	double		current_floor_y;
 	int			floor_tex_x;
 	int			floor_tex_y;
 	double		weight;
 	double		current_dist;
+}				t_raycast;
 
-	int			key_space;
+typedef struct s_data
+{
+	SDL_Window	*win;
+	SDL_Renderer	*ren;
+	SDL_Texture *screen;
+	SDL_Surface *up;
+	SDL_Surface *floor;
+	SDL_Surface *wall[13];
+	SDL_Surface *pist[3];
+	SDL_Surface *drob[7];
+	SDL_Surface *sky[3];
+	SDL_Surface *start_screen[4];
+	Mix_Music	*mus[3];
+	Mix_Music	*shots[2];
+	t_sprites	sprit;
+	t_raycast	raycast;
 	unsigned int time;
 	unsigned int start_time;
+	double		speed;
+	char		*name;
+	int			fd;
+	int			height_arr;
+	int			width_arr;
+	int 		**array;
+	int			buf[HEIGHT][WIDTH];
+	int			key_space;
 	int 		sprite_tex_x;
 	int			sprite_tex_y;
 	int 		spr_x;
@@ -152,8 +161,8 @@ typedef struct s_data
 	int 		check_door;
 	int			key_floor;
 	int			nbr_sky;
-
 	int			for_exit;
+	int			nb_screen;
 	int 		x;
 	int			y;
 	int			d;
@@ -188,5 +197,8 @@ void			chek_door(t_data *data);
 void			door(t_data *data);
 void			skybox(t_data *data);
 Mix_Music		*load_music(char *path);
+void 			start_screen(t_data *data);
+void 			apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
+void			game(t_data *data);
 
 #endif 

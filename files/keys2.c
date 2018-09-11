@@ -72,18 +72,21 @@ void	more_keys(t_data *data, const Uint8 *keys)
 
 void	other_keys(t_data *data, const Uint8 *keys)
 {
+	static unsigned int tim;
+
 	if (keys[SDL_SCANCODE_SPACE] && data->key_space != 1)
 	{
 		Mix_PlayMusic(data->shots[data->nb_weapon - 1], 1);
 		data->key_space = 1;
 		data->start_time = SDL_GetTicks();
 	}
-	if (keys[SDL_SCANCODE_Q] && data->key_space == 0)
+	if (keys[SDL_SCANCODE_Q] && data->key_space == 0 && tim + 100 < SDL_GetTicks())
 	{
 		if (data->nb_weapon == 1)
 			data->nb_weapon = 2;
 		else if (data->nb_weapon == 2)
 			data->nb_weapon = 1;
+		tim = SDL_GetTicks();
 	}
 	if (keys[SDL_SCANCODE_E] && data->key_door != 1)
 	{

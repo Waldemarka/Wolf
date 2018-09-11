@@ -34,6 +34,8 @@ void	init_all(t_data *data)
 	data->max_box = 7;
 	data->speed = 0.08;
 	data->key_floor = 1;
+	data->for_exit = 1;
+	data->nb_screen = 0;
 	load_media(data);
 }
 
@@ -59,17 +61,21 @@ void	ft_read(t_data *data)
 
 void	game(t_data *data)
 {
-	while (data->for_exit == 0)
-	{
-		SDL_UpdateTexture(data->screen, NULL, data->buf, WIDTH << 2);
-		SDL_RenderCopy(data->ren, data->screen, NULL, NULL);
-		SDL_RenderPresent(data->ren);
-		if (data->key_floor != 3)
-			skybox(data);
-		raycasting(data);
-		door(data);
-		key_event(data);
-	}
+	if (data->for_exit == 0)
+		while (data->for_exit == 0)
+		{
+			SDL_UpdateTexture(data->screen, NULL, data->buf, WIDTH << 2);
+			SDL_RenderCopy(data->ren, data->screen, NULL, NULL);
+			SDL_RenderPresent(data->ren);
+			if (data->key_floor != 3)
+				skybox(data);
+			raycasting(data);
+			door(data);
+			key_event(data);
+		}
+	if (data->for_exit == 1)
+		while (data->for_exit == 1)
+			start_screen(data);
 }
 
 int main(int argc, char *argv[])

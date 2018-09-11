@@ -37,3 +37,42 @@ void	skybox(t_data *data) // 7661 972
 		x++;
 	}
 }
+
+void	cont_screen(t_data *data, SDL_Event	event)
+{
+	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LSHIFT && data->nb_screen == 0)
+	{
+		data->for_exit = 0;
+		game(data);
+	}
+	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LSHIFT && data->nb_screen == 1)
+		ft_error(5);
+	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LSHIFT && data->nb_screen == 2)
+		data->nb_screen = 3;
+}
+
+void	start_screen(t_data *data)
+{
+	SDL_Event	event;
+
+	data->screen = SDL_CreateTextureFromSurface(data->ren, data->start_screen[data->nb_screen]);
+	SDL_RenderCopy(data->ren, data->screen, NULL, NULL);
+	SDL_RenderPresent(data->ren);
+	while (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_QUIT || C_Q)
+		{
+			data->for_exit = 1;
+			ft_error(5);
+		}
+		if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP)
+		{
+			if (data->nb_screen != 0)
+				data->nb_screen -= 1;
+		}
+		if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN)
+			if (data->nb_screen <= 2)
+				data->nb_screen += 1;
+		cont_screen(data, event);	
+	}
+}

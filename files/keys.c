@@ -69,25 +69,19 @@ void	key_event(t_data *data)
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
 	while (SDL_PollEvent(&event))
-	{
 		if (event.type == SDL_QUIT || C_Q)
-		{
 			data->for_exit = 1;
-			ft_error(5);
-		}
-		if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W])
-			key_w(data);
-		if (keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S])
-			key_s(data);
-		if (keys[SDL_SCANCODE_LEFT])
-			key_left(data);
-		if (keys[SDL_SCANCODE_RIGHT])
-			key_right(data);
-		if (keys[SDL_SCANCODE_A])
-			key_a(data);
-		if (keys[SDL_SCANCODE_D])
-			key_d(data);
-		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
-			other_keys(data, keys);
-	}
+	if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W])
+		key_w(data);
+	if (keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S])
+		key_s(data);
+	if (keys[SDL_SCANCODE_LEFT])
+		key_left(data);
+	if (keys[SDL_SCANCODE_RIGHT])
+		key_right(data);
+	if (keys[SDL_SCANCODE_A])
+		key_a(data);
+	if (keys[SDL_SCANCODE_D])
+		key_d(data);
+	other_keys(data, keys);
 }

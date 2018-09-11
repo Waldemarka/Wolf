@@ -113,5 +113,9 @@ void	load_media(t_data *data)
 	data->wall[10] = load_image("media/door/door_7.png");
 	data->wall[11] = load_image("media/door/door_8.png");
 	data->wall[12] = load_image("media/door/door_9.png");
+	data->start_screen[0] = load_image("media/walls_etc/start_screen_1.jpg");
+	data->start_screen[1] = load_image("media/walls_etc/start_screen_2.jpg");
+	data->start_screen[2] = load_image("media/walls_etc/start_screen_3.jpg");
+	data->start_screen[3] = load_image("media/walls_etc/start_screen_4.jpg");
 	load_other_media(data);
 }

@@ -16,23 +16,23 @@ void	second_part_ray(t_data *data)
 {
 	if (RAY_DIR_X < 0)
 	{
-		data->step_x = -1;
+		STEP_X = -1;
 		SIDE_DIST_X = (POS_X - MAP_X) * DELTA_DIST_X;
 	}
 	else
 	{
-		data->step_x = 1;
+		STEP_X = 1;
 		SIDE_DIST_X = (MAP_X + 1.0 - POS_X)
 		* DELTA_DIST_X;
 	}
 	if (RAY_DIR_Y < 0)
 	{
-		data->step_y = -1;
+		STEP_Y = -1;
 		SIDE_DIST_Y = (POS_Y - MAP_Y) * DELTA_DIST_Y;
 	}
 	else
 	{
-		data->step_y = 1;
+		STEP_Y = 1;
 		SIDE_DIST_Y = (MAP_Y + 1.0 - POS_Y) * DELTA_DIST_Y;
 	}
 }
@@ -44,13 +44,13 @@ void	dda_ray(t_data * data)
 		if (SIDE_DIST_X < SIDE_DIST_Y)
 		{
 			SIDE_DIST_X += DELTA_DIST_X;
-			MAP_X += data->step_x;
+			MAP_X += STEP_X;
 			SIDE = 0;
 		}
 		else
 		{
 			SIDE_DIST_Y += DELTA_DIST_Y;
-			MAP_Y += data->step_y;
+			MAP_Y += STEP_Y;
 			SIDE = 1;
 		}
 		if ((data->array[MAP_Y][MAP_X] > 0
@@ -76,10 +76,10 @@ void	first_part_ray(t_data *data)
 void	calculate_drawing(t_data *data)
 {
 	if (SIDE == 0)
-		PERP_WALL_DIST = (MAP_X - POS_X + (1 - data->step_x)
+		PERP_WALL_DIST = (MAP_X - POS_X + (1 - STEP_X)
 			/ 2) / RAY_DIR_X;
 	else
-		PERP_WALL_DIST = (MAP_Y - POS_Y + (1 - data->step_y)
+		PERP_WALL_DIST = (MAP_Y - POS_Y + (1 - STEP_Y)
 			/ 2) / RAY_DIR_Y;
 	LINE_HEIGHT = (int)(HEIGHT / PERP_WALL_DIST);
 	DRAW_START = -LINE_HEIGHT / 2 + HEIGHT / 2;
