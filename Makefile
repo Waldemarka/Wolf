@@ -16,7 +16,7 @@ SRC_WOLF = ./files/get_next_line.c ./files/raycast.c\
 		./files/other.c ./files/read.c ./files/main.c\
 		./files/raycast2.c ./files/sdl.c ./files/keys.c\
 		./files/sprite.c ./files/keys2.c ./files/door.c\
-		./files/skybox.c
+		./files/skybox.c ./files/fresh.c 
 
 OBJECT_WOLF = $(SRC_WOLF:.c=.o)
 

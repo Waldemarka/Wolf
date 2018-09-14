@@ -1,4 +1,4 @@
-  /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   first.c                                            :+:      :+:    :+:   */
@@ -10,21 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
 void	init_all(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		ft_error(3);
-	if (!(data->win = SDL_CreateWindow("Wolf3D", 400, 400, WIDTH, HEIGHT, SDL_WINDOW_RESIZABLE)))
+	if (!(data->win = SDL_CreateWindow("Wolf3D", 400, 400, WIDTH,
+		HEIGHT, SDL_WINDOW_RESIZABLE)))
 		ft_error(3);
 	if (!(data->ren = SDL_CreateRenderer(data->win, -1, SDL_RENDERER_ACCELERATED
 		| SDL_RENDERER_PRESENTVSYNC)))
 		ft_error(3);
 	if (!(data->screen = SDL_CreateTexture(data->ren,
-		SDL_PIXELFORMAT_ARGB8888	, SDL_TEXTUREACCESS_TARGET, WIDTH, HEIGHT)))
+		SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_TARGET, WIDTH, HEIGHT)))
 		ft_error(3);
-	if (Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		ft_error(3);
 	DIR_X = -1.0;
 	DIR_Y = 0.0;
@@ -32,7 +33,7 @@ void	init_all(t_data *data)
 	PLAN_Y = 0.66;
 	data->nb_weapon = 1;
 	data->max_box = 7;
-	data->speed = 0.08;
+	data->speed = 0.06;
 	data->key_floor = 1;
 	data->for_exit = 1;
 	data->nb_screen = 0;
@@ -41,8 +42,8 @@ void	init_all(t_data *data)
 
 void	ft_read(t_data *data)
 {
-	char **reading;
-	int q;
+	char	**reading;
+	int		q;
 
 	q = 0;
 	reading = open_read(data);
@@ -53,7 +54,7 @@ void	ft_read(t_data *data)
 	check_rest(data);
 	while (reading[q])
 	{
-		free(reading[q]); 
+		free(reading[q]);
 		q++;
 	}
 	free(reading);
@@ -78,9 +79,9 @@ void	game(t_data *data)
 			start_screen(data);
 }
 
-int main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
-	t_data *data;  
+	t_data *data;
 
 	if (argc == 2)
 	{
@@ -93,8 +94,9 @@ int main(int argc, char *argv[])
 		ft_read(data);
 		init_all(data);
 		game(data);
+		fresh(data);
 	}
 	else
 		ft_error(1);
-	return 0;
+	return (0);
 }

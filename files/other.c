@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   other.c                                            :+:      :+:    :+:   */
@@ -10,26 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
-void 	ft_error(int num)
+void	ft_error(int num)
 {
 	if (num == 0)
 		ft_putstr("BAD MALLOC!\n");
 	if (num == 1)
-		ft_putstr("1 ARGC / NOT DIRECTORY \n");
+		ft_putstr("1 ARGC / DIRECTORY \n");
 	if (num == 2)
 		ft_putstr("BAD READ / NOT VALID MAP\n");
 	if (num == 3)
 		ft_putstr("INIT ERROR\n");
 	if (num == 4)
 		ft_putstr("BAD LOAD\n");
-	if (num == 5)
-		ft_putstr("FINISH\n");
-	exit (1);
+	exit(1);
 }
 
-int 	len_int(char *str)
+int		len_int(char *str)
 {
 	int q;
 	int i;
@@ -67,7 +65,8 @@ void	check_rest(t_data *data)
 	if (data->array[(int)POS_Y][(int)POS_X] != 0)
 		ft_error(2);
 	if ((int)POS_Y == 0 || (int)POS_Y == 1 ||
-		(int)POS_Y == data->height_arr - 1 || (int)POS_Y == data->height_arr - 2)
+		(int)POS_Y == data->height_arr - 1 ||
+		(int)POS_Y == data->height_arr - 2)
 		ft_error(2);
 	if ((int)POS_X == 0 || (int)POS_X == 1 ||
 		(int)POS_X == data->width_arr - 1 || (int)POS_X == data->width_arr - 2)

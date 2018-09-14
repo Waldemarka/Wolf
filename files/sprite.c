@@ -1,4 +1,4 @@
-  /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   splits.c                                           :+:      :+:    :+:   */
@@ -10,34 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
 SDL_Surface	*guns(t_data *data)
 {
 	if (data->count == 0 && data->nb_weapon == 1)
-		return(data->pist[0]);
+		return (data->pist[0]);
 	if (data->count == 1 && data->nb_weapon == 1)
-		return(data->pist[1]);
+		return (data->pist[1]);
 	if (data->count == 2 && data->nb_weapon == 1)
-		return(data->pist[2]);
+		return (data->pist[2]);
 	if (data->count == 0 && data->nb_weapon == 2)
-		return(data->drob[0]);
+		return (data->drob[0]);
 	if (data->count == 1 && data->nb_weapon == 2)
-		return(data->drob[1]);
+		return (data->drob[1]);
 	if (data->count == 2 && data->nb_weapon == 2)
-		return(data->drob[2]);
+		return (data->drob[2]);
 	if (data->count == 3 && data->nb_weapon == 2)
-		return(data->drob[3]);
+		return (data->drob[3]);
 	if (data->count == 4 && data->nb_weapon == 2)
-		return(data->drob[4]);
+		return (data->drob[4]);
 	if (data->count == 5 && data->nb_weapon == 2)
-		return(data->drob[5]);
+		return (data->drob[5]);
 	if (data->count == 6 && data->nb_weapon == 2)
-		return(data->drob[6]);
+		return (data->drob[6]);
 	return (NULL);
 }
 
-void	check_sprit(t_data *data)
+void		check_sprit(t_data *data)
 {
 	if (data->nb_weapon == 1)
 	{
@@ -58,7 +58,7 @@ void	check_sprit(t_data *data)
 	data->sprit.max_coord_y = HEIGHT;
 }
 
-void	animat(t_data *data, SDL_Surface *tex_sprite)
+void		animat(t_data *data, SDL_Surface *tex_sprite)
 {
 	int x;
 	int y;
@@ -82,15 +82,16 @@ void	animat(t_data *data, SDL_Surface *tex_sprite)
 	}
 }
 
-void	draw_animations(t_data *data)
+void		draw_animations(t_data *data)
 {
 	data->time = SDL_GetTicks();
-
 	if (data->key_space == 1)
 	{
-		if (data->time <= data->start_time + (data->sprit.timing * (data->count + 1)))
+		if (data->time <= data->start_time + (data->sprit.timing
+			* (data->count + 1)))
 			animat(data, guns(data));
-		if (data->time >= data->start_time + (data->sprit.timing * (data->count + 1)))
+		if (data->time >= data->start_time + (data->sprit.timing
+			* (data->count + 1)))
 		{
 			animat(data, guns(data));
 			data->count++;
@@ -105,7 +106,7 @@ void	draw_animations(t_data *data)
 		data->count = 0;
 }
 
-void	sprites(t_data *data)
+void		sprites(t_data *data)
 {
 	check_sprit(data);
 	if (data->key_space == 0)
@@ -113,8 +114,3 @@ void	sprites(t_data *data)
 	if (data->key_space == 1)
 		draw_animations(data);
 }
-
-
-
-
-

@@ -126,11 +126,12 @@ typedef struct s_data
 	SDL_Texture *screen;
 	SDL_Surface *up;
 	SDL_Surface *floor;
-	SDL_Surface *wall[13];
+	SDL_Surface *wall[14];
 	SDL_Surface *pist[3];
 	SDL_Surface *drob[7];
 	SDL_Surface *sky[3];
 	SDL_Surface *start_screen[4];
+	SDL_Surface *boxer[6];
 	Mix_Music	*mus[3];
 	Mix_Music	*shots[2];
 	t_sprites	sprit;
@@ -200,5 +201,6 @@ Mix_Music		*load_music(char *path);
 void 			start_screen(t_data *data);
 void 			apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
 void			game(t_data *data);
+void			fresh(t_data *data);
 
 #endif 

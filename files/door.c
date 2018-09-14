@@ -1,16 +1,16 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomelchu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/012/04 18:33:24 by vomelchu          #+#    #+#             */
-/*   Updated: 2018/012/04 18:33:25 by vomelchu         ###   ########.fr       */
+/*   Created: 2018/09/14 16:19:17 by vomelchu          #+#    #+#             */
+/*   Updated: 2018/09/14 16:19:21 by vomelchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
 void	chek_door(t_data *data)
 {
@@ -33,15 +33,14 @@ void	chek_door(t_data *data)
 void	door(t_data *data)
 {
 	data->time_door = SDL_GetTicks();
-
 	if (data->key_door == 1)
 	{
-		if (data->time_door <= data->start_time_door + (150 * (data->q_door + 1)))
+		if (data->time_door <= data->start_time_door + (150 * (data->q_door)))
 		{
 			data->max_box += data->q_door;
 			raycasting(data);
 		}
-		if (data->time_door >= data->start_time_door + (150 * (data->q_door + 1)))
+		if (data->time_door >= data->start_time_door + (150 * (data->q_door)))
 		{
 			data->max_box += data->q_door;
 			raycasting(data);

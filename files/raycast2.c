@@ -1,4 +1,4 @@
-  /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycast2.c                                         :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
 void	find_floorwall(t_data *data)
 {
@@ -32,7 +32,7 @@ void	find_floorwall(t_data *data)
 	else
 	{
 		FLOOR_WALL_X = MAP_X + WALL_X;
-		FLOOR_WALL_Y = MAP_Y + 1.0;	
+		FLOOR_WALL_Y = MAP_Y + 1.0;
 	}
 }
 
@@ -54,13 +54,15 @@ void	dr_floor(t_data *data)
 		FLOOR_TEX_X = (int)(CURRENT_FLOOR_X * 256) % 256;
 		FLOOR_TEX_Y = (int)(CURRENT_FLOOR_Y * 256) % 256;
 		if (data->key_floor != 2 && data->key_floor != 4)
-			data->buf[data->y][data->x] = get_pixel_int(data->floor, FLOOR_TEX_X, FLOOR_TEX_Y);
+			data->buf[data->y][data->x] = get_pixel_int(data->floor,
+				FLOOR_TEX_X, FLOOR_TEX_Y);
 		if (data->key_floor != 1 && data->key_floor != 4)
-		data->buf[WIDTH / 4 * 3 - data->y][data->x] = get_pixel_int(data->up, FLOOR_TEX_X, FLOOR_TEX_Y);
+			data->buf[WIDTH / 4 * 3 - data->y][data->x] =
+		get_pixel_int(data->up, FLOOR_TEX_X, FLOOR_TEX_Y);
 	}
 }
 
-void 	draw_wall(t_data *data)
+void	draw_wall(t_data *data)
 {
 	int n;
 	int color;
@@ -75,7 +77,7 @@ void 	draw_wall(t_data *data)
 	if (SIDE == 0 && RAY_DIR_X > 0)
 		TEX_X = 256.0 - TEX_X - 1;
 	if (SIDE == 1 & RAY_DIR_Y < 0)
-		TEX_X = 256.0 - TEX_X  - 1;
+		TEX_X = 256.0 - TEX_X - 1;
 	data->y = DRAW_START;
 	while (++data->y < DRAW_END)
 	{

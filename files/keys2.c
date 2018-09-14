@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   keys2.c                                            :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
 void	key_left(t_data *data)
 {
@@ -26,7 +26,7 @@ void	key_left(t_data *data)
 }
 
 void	key_right(t_data *data)
-{ 
+{
 	double plan;
 	double dr;
 
@@ -67,7 +67,10 @@ void	more_keys(t_data *data, const Uint8 *keys)
 		data->key_floor = 3;
 	if (keys[SDL_SCANCODE_4])
 		data->key_floor = 4;
-
+	if (keys[SDL_SCANCODE_LSHIFT] == 1)
+		data->speed = 0.1;
+	else
+		data->speed = 0.06;
 }
 
 void	other_keys(t_data *data, const Uint8 *keys)
@@ -80,7 +83,8 @@ void	other_keys(t_data *data, const Uint8 *keys)
 		data->key_space = 1;
 		data->start_time = SDL_GetTicks();
 	}
-	if (keys[SDL_SCANCODE_Q] && data->key_space == 0 && tim + 100 < SDL_GetTicks())
+	if (keys[SDL_SCANCODE_Q] && data->key_space == 0
+		&& tim + 200 < SDL_GetTicks())
 	{
 		if (data->nb_weapon == 1)
 			data->nb_weapon = 2;

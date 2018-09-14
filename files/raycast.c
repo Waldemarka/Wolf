@@ -1,4 +1,4 @@
-  /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#include "wolf.h"
 
 void	second_part_ray(t_data *data)
 {
@@ -37,7 +37,7 @@ void	second_part_ray(t_data *data)
 	}
 }
 
-void	dda_ray(t_data * data)
+void	dda_ray(t_data *data)
 {
 	while (HIT == 0)
 	{
@@ -53,8 +53,8 @@ void	dda_ray(t_data * data)
 			MAP_Y += STEP_Y;
 			SIDE = 1;
 		}
-		if ((data->array[MAP_Y][MAP_X] > 0
-			&& data->array[MAP_Y][MAP_X] < data->max_box))
+		if (data->array[MAP_Y][MAP_X] > 0
+			&& data->array[MAP_Y][MAP_X] < data->max_box)
 			HIT = 1;
 	}
 }

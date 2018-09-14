@@ -1,4 +1,4 @@
-  /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sdl.c                                              :+:      :+:    :+:   */
@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "wolf.h"
+#define SUR SDL_Surface *destination
 
-SDL_Surface	*load_image(char *path)
+#include "wolf.h"
+
+SDL_Surface		*load_image(char *path)
 {
 	SDL_Surface	*texture;
 
@@ -30,7 +32,7 @@ unsigned int	get_pixel_int(SDL_Surface *surface, int x, int y)
 	return (pixels[(y * surface->w) + x]);
 }
 
-Mix_Music	*load_music(char *path)
+Mix_Music		*load_music(char *path)
 {
 	Mix_Music *music;
 
@@ -39,11 +41,11 @@ Mix_Music	*load_music(char *path)
 	return (music);
 }
 
-void apply_surface( int x, int y, SDL_Surface *source, SDL_Surface *destination )
+void			apply_surface(int x, int y, SDL_Surface *source, SUR)
 {
-    SDL_Rect offset;
+	SDL_Rect offset;
 
-    offset.x = x;
-    offset.y = y;
-	SDL_BlitSurface(source, NULL, destination, &offset );
+	offset.x = x;
+	offset.y = y;
+	SDL_BlitSurface(source, NULL, destination, &offset);
 }
