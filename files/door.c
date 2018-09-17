@@ -15,8 +15,7 @@
 void	chek_door(t_data *data)
 {
 	if (data->door_cen == 1 &&
-		data->array[MAP_Y][MAP_X] >= 5 &&
-		data->array[MAP_Y][MAP_X] < 12 &&
+		(data->array[MAP_Y][MAP_X] == 5) &&
 		((data->array[MAP_Y + 1][MAP_X] > 0 &&
 		data->array[MAP_Y - 1][MAP_X] > 0) ||
 		(data->array[MAP_Y][MAP_X + 1] > 0 &&

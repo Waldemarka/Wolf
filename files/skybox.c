@@ -66,7 +66,7 @@ void	start_screen(t_data *data)
 	SDL_RenderPresent(data->ren);
 	while (SDL_PollEvent(&event))
 	{
-		if (event.type == SDL_QUIT || C_Q)
+		if (event.type == SDL_QUIT || EXIT)
 			data->for_exit = 0;
 		if (event.type == SDL_KEYDOWN && (event.key.keysym.sym == SDLK_UP
 			|| event.key.keysym.sym == SDLK_LEFT))

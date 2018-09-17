@@ -68,8 +68,12 @@ void	key_event(t_data *data)
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
 	while (SDL_PollEvent(&event))
-		if (event.type == SDL_QUIT || C_Q)
+	{
+		if (event.type == SDL_QUIT)
+			data->for_exit = 2;
+		if (EXIT)
 			data->for_exit = 1;
+	}
 	if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W])
 		key_w(data);
 	if (keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S])

@@ -41,11 +41,11 @@ Mix_Music		*load_music(char *path)
 	return (music);
 }
 
-void			apply_surface(int x, int y, SDL_Surface *source, SUR)
+void			apply_surface(int x, int y, SDL_Surface *sour, SUR)
 {
 	SDL_Rect offset;
 
 	offset.x = x;
 	offset.y = y;
-	SDL_BlitSurface(source, NULL, destination, &offset);
+	SDL_BlitSurface(sour, NULL, destination, &offset);
 }
